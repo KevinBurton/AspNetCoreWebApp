@@ -12,13 +12,13 @@ using Neo4j.Driver.V1;
 // https://neo4j.com/developer/dotnet/
 namespace AspNetCoreWebApp.Data.Repositories.Implmentations
 {
-    public class Neo4jMessageRepository : IGraphRepository
+    public class Neo4jRepository : IGraphRepository
     {
         private IDriver _driver;
         private Neo4jOptions _options;
         private Microsoft.Extensions.Logging.ILogger _logger;
-        public Neo4jMessageRepository(IOptions<Neo4jOptions> optionsAccessor,
-                                      Microsoft.Extensions.Logging.ILogger<Neo4jMessageRepository> logger)
+        public Neo4jRepository(IOptions<Neo4jOptions> optionsAccessor,
+                               Microsoft.Extensions.Logging.ILogger<Neo4jRepository> logger)
         {
             Options = optionsAccessor.Value;
             Logger = logger;

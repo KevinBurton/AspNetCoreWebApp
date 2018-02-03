@@ -11,7 +11,7 @@ using AspNetCoreWebApp.Models.Interfaces;
 using AspNetCoreWebApp.Models.Configuration;
 using MongoDB.Driver;
 using MongoDB.Bson.Serialization;
-namespace Ng2AspCore.Data.Repositories.Implmentations
+namespace AspNetCoreWebApp.Data.Repositories.Implmentations
 {
     public class MongoRepository<T> : IDocumentRepository<T>, IDisposable
     {
