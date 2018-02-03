@@ -1,0 +1,73 @@
+version: "3.4"
+services:
+
+  nginx:
+    build: ./nginx
+    links:
+        - node1:node1
+        - node2:node2
+        - node3:node3
+    ports:
+        - "80:80"
+    depends_on:
+      - node1
+      - node2
+      - node3
+  node1:
+    build: ./AspNetCoreWebApp
+    links:
+        - redis
+        - mongo
+        - neo4j
+    ports:
+        - "5000"
+     depends_on:
+      - redis
+      - mongo
+      - neo4j
+  node2:
+    build: ./AspNetCoreWebApp
+    links:
+        - redis
+        - mongo
+        - neo4j
+    ports:
+        - "5000"
+     depends_on:
+      - redis
+      - mongo
+      - neo4j
+  node3:
+    build: ./AspNetCoreWebApp
+    links:
+        - redis
+        - mongo
+        - neo4j
+    ports:
+        - "5000"
+     depends_on:
+      - redis
+      - mongo
+      - neo4j
+  redis:
+    image: redis
+    ports:
+        - "6379"
+  mongo:
+    image: mongo
+    ports:
+        - "27017"
+    volumes:
+      - type: bind
+        source: /Users/rebeccaannburton/Projects/AspNetCoreWebApp/Db/Mongo/
+        target: /data/db
+  neo4j:
+    image: neo4j
+    ports:
+        - "7474:7474"
+        - "7687"
+    volumes:
+      - type: bind
+        source: /Users/rebeccaannburton/Projects/AspNetCoreWebApp/Db/Neo4j/
+        target: /data
+# browser at localhost:80
